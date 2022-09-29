@@ -10,7 +10,7 @@ pipeline {
 			}
 			steps {
 				script {
-					CHANGE_AUTHOR = sh(script: 'bash printenv',,returnStdout: true)
+					sh 'prinetnv'
 					error "This pipeline was locked ${CHANGE_AUTHOR}"
 				}
 			}
