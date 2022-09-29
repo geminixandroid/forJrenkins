@@ -9,8 +9,9 @@ pipeline {
 				}
 			}
 			steps {
+				echo CHANGE_AUTHOR
 				script {
-					error "This pipeline was locked $CHANGE_AUTHOR"
+					error "This pipeline was locked "
 				}
 			}
 		}
