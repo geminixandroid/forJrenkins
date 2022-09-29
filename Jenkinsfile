@@ -22,5 +22,10 @@ pipeline {
 				echo 'Stage 4..'
 			}
 		}
+		stage('Stage 5') {
+			steps {
+				echo 'Stage 5..'
+			}
+		}
 	}
 }
