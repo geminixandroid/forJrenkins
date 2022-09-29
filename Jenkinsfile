@@ -2,19 +2,20 @@ pipeline {
 	agent any
 
 	stages {
-		stage('Checking if enabled') {
-			steps {
-				script {
-					FILE_NAME="cd.enabled"
-					if (fileExists(FILE_NAME)){
-						echo "Pipeline is enabled"
-					} else {
-						COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
-						error "Pipeline was disabled by ${COMMIT_AUTHOR}, for enabling put this file ${FILE_NAME}"
-					}
-				}
-			}
-		}
+        stage('Checking if enabled') {
+          steps {
+            script {
+              CD_ENABLED_FILE_NAME="cd.enabled"
+
+              if (fileExists(CD_ENABLED_FILE_NAME)) {
+                echo "Pipeline is enabled"
+              } else {
+                 COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
+                 error "Pipeline was disabled by ${COMMIT_AUTHOR}, for enabling put this file ${CD_ENABLED_FILE_NAME}"
+              }
+            }
+          }
+        }
 		stage('Build tools') {
 			steps {
 				echo 'Building tools..'
