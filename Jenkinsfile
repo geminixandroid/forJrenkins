@@ -3,18 +3,15 @@ pipeline {
 
 	stages {
 		stage('Checking if pipeline is enabled') {
-			steps {
-				FILE_NAME='cd.enabled'
-				if (fileExists(${FILE_NAME})) 
-					{
-					script {
-						COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
-						error "Pipeline was disabled by ${COMMIT_AUTHOR}, for enabling put ${FILE_NAME}"
+			FILE_NAME="cd.enabled"
+			if (fileExists(${FILE_NAME})) {
+				script {
+					COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
+					error "Pipeline was disabled by ${COMMIT_AUTHOR}, for enabling put ${FILE_NAME}"
 					}
 				}
-				else {
+			else {
 					echo "Pipeline enabled"
-				}
 			}
 		}
 		stage('Build tools') {
