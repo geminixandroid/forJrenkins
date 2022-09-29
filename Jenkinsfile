@@ -10,8 +10,7 @@ pipeline {
 			}
 			steps {
 				script {
-					GIT_AUTHOR=$(git --no-pager show -s --format='%an' $GIT_COMMIT) 
-					error "This pipeline was locked ${GIT_AUTHOR}"
+					error "The build number is ${env.CHANGE_AUTHOR}"
 				}
 			}
 		}
