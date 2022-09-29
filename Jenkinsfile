@@ -2,16 +2,16 @@ pipeline {
 	agent any
 
 	stages {
-		stage('Check lock file exists') {
+		stage('Checking if pipeline is enabled') {
 			when {
 				expression {
-					fileExists 'cd.lock'
+					!fileExists 'cd.enabled'
 				}
 			}
 			steps {
 				script {
-					AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
-					error "Pipeline was blocked by ${AUTHOR}"
+					COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
+					error "Pipeline was disabled by ${COMMIT_AUTHOR}"
 				}
 			}
 		}
