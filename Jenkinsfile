@@ -10,7 +10,7 @@ pipeline {
 			}
 			steps {
 				script {
-					error "This pipeline was locked by ${CHANGE_AUTHOR}"
+					error "This pipeline was locked"
 				}
 			}
 		}
