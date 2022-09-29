@@ -10,7 +10,7 @@ pipeline {
 			}
 			steps {
 				script {
-					AUTHOR=sh(script: 'bash +x git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
+					AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
 					error "Pipeline was blocked by ${AUTHOR}"
 				}
 			}
