@@ -5,7 +5,7 @@ pipeline {
 		stage('Check lock file exists') {
 			when {
 				expression {
-					true
+					fileExists 'cd.lock'
 				}
 			}
 			steps {
