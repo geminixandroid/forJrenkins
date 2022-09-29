@@ -3,6 +3,11 @@ pipeline {
 
 	stages {
 		stage('Build') {
+			when {
+                expression {
+                  false
+                }
+              }
 			steps {
 				echo 'Building..'
 			}
