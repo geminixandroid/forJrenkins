@@ -10,7 +10,7 @@ pipeline {
 			}
 			steps {
 				script {
-					error "The build number is ${env.CHANGE_AUTHOR}"
+					error "The build number is ${env}"
 				}
 			}
 		}
