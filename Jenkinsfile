@@ -2,21 +2,16 @@ pipeline {
 	agent any
 
 	stages {
-		when {
-			expression {
-				false
+		stage('Check lock file exists') {
+			when {
+				expression {
+					true
+				}
 			}
-		}
-		stage('Check access') {
-			
 			steps {
-				echo 'Check access..'
-			}
-		}
-		stage('Build') {
-			
-			steps {
-				echo 'Building..'
+				script {
+					error "This pipeline was locked by {${CHANGE_AUTHOR}}"
+				}
 			}
 		}
 		stage('Build tools') {
