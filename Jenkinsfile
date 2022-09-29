@@ -10,9 +10,9 @@ pipeline {
 			}
 			steps {
 				script {
-					def author = sh(returnStdout: true, script: "git log -1 --pretty=format:'%an'").trim()
-					echo "$author"
-					error "The build number is ${author}"
+					TEST=sh(script: 'git log -1 --pretty=format:\'%an\'', , returnStdout: true).trim()
+					echo TEST
+					error "The build number is ${TEST}"
 				}
 			}
 		}
