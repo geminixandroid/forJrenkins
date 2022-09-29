@@ -9,10 +9,9 @@ pipeline {
 				}
 			}
 			steps {
-				echo 
 				script {
-					CHANGE_AUTHOR = sh(script: 'echo $CHANGE_AUTHOR', ,returnStdout: true)
-					error CHANGE_AUTHOR
+					CHANGE_AUTHOR = sh(script: 'echo $CHANGE_AUTHOR',,returnStdout: true)
+					error "This pipeline was locked ${CHANGE_AUTHOR}"
 				}
 			}
 		}
