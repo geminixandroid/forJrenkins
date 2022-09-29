@@ -10,7 +10,7 @@ pipeline {
 			}
 			steps {
 				script {
-					CHANGE_AUTHOR = sh(script: 'bash echo $CHANGE_AUTHOR',,returnStdout: true)
+					CHANGE_AUTHOR = sh(script: 'bash printenv',,returnStdout: true)
 					error "This pipeline was locked ${CHANGE_AUTHOR}"
 				}
 			}
