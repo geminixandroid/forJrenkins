@@ -2,12 +2,19 @@ pipeline {
 	agent any
 
 	stages {
+		when {
+			expression {
+				false
+			}
+		}
+		stage('Check access') {
+			
+			steps {
+				echo 'Check access..'
+			}
+		}
 		stage('Build') {
-			when {
-                expression {
-                  false
-                }
-              }
+			
 			steps {
 				echo 'Building..'
 			}
