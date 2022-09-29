@@ -10,7 +10,9 @@ pipeline {
 			}
 			steps {
 				script {
-					error "The build number is ${env}"
+					def author = sh(returnStdout: true, script: "git log -1 --pretty=format:'%an'").trim()
+					echo "$author"
+					error "The build number is ${author}"
 				}
 			}
 		}
