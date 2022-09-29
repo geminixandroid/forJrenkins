@@ -6,8 +6,10 @@ pipeline {
 			steps {
 				script {
 					FILE_NAME='cd.enabled'
-					COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
-					error "Pipeline was blocked by ${COMMIT_AUTHOR}, ${FILE_NAME}"
+					if (!fileExists(FILE_NAME)){
+						COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
+						error "Pipeline was blocked by ${COMMIT_AUTHOR}, ${FILE_NAME}"
+					}
 				}
 			}
 		}
