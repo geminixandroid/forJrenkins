@@ -3,9 +3,10 @@ pipeline {
 
 	stages {
 		stage('Checking if pipeline is enabled') {
+			FILE_NAME='cd.enabled'
 			when {
 				expression {
-					!fileExists('cd.enabled')
+					!fileExists(${FILE_NAME})
 				}
 			}
 			steps {
