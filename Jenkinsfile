@@ -10,9 +10,8 @@ pipeline {
 			}
 			steps {
 				script {
-					TEST=sh(script: 'git log -1 --pretty=format:\'%an\'', , returnStdout: true).trim()
-					echo TEST
-					error "The build number is ${TEST}"
+					AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', , returnStdout: true).trim()
+					error "Pipeline was blocked by {AUTHOR}"
 				}
 			}
 		}
