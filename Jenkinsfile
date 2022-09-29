@@ -10,7 +10,7 @@ pipeline {
 						echo "Pipeline is enabled"
 					} else {
 						COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
-						error "Pipeline was blocked by ${COMMIT_AUTHOR}, for enbaling put this file ${FILE_NAME}"
+						error "Pipeline was blocked by ${COMMIT_AUTHOR}, for enabling put this file ${FILE_NAME}"
 					}
 				}
 			}
