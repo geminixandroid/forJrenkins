@@ -4,7 +4,8 @@ pipeline {
 	stages {
 		stage('Checking if pipeline is enabled') {
 			steps {
-				if ( fileExists 'cd.enabled' ) {
+				if ( fileExists 'cd.enabled' ) 
+					{
 					script {
 						COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
 						error "Pipeline was disabled by ${COMMIT_AUTHOR}"
