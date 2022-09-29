@@ -3,16 +3,11 @@ pipeline {
 
 	stages {
 		stage('Checking if pipeline is enabled') {
-			FILE_NAME='cd.enabled'
-			when {
-				expression {
-					!fileExists(${FILE_NAME})
-				}
-			}
 			steps {
+				FILE_NAME='cd.enabled'
 				script {
 					COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
-					error "Pipeline was blocked by ${COMMIT_AUTHOR}"
+					error "Pipeline was blocked by ${COMMIT_AUTHOR}, ${FILE_NAME}"
 				}
 			}
 		}
