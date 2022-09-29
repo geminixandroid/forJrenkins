@@ -2,7 +2,7 @@ pipeline {
 	agent any
 
 	stages {
-		stage('Checking if pipeline is enabled') {
+		stage('Checking if enabled') {
 			steps {
 				script {
 					FILE_NAME="cd.enabled"
