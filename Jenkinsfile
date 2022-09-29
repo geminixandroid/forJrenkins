@@ -6,10 +6,7 @@ pipeline {
           steps {
             script {
               CD_ENABLED_FILE_NAME="cd.enabled"
-
-              if (fileExists(CD_ENABLED_FILE_NAME)) {
-                echo "Pipeline is enabled"
-              } else {
+              if (!fileExists(CD_ENABLED_FILE_NAME)) {
                  COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
                  error "Pipeline was disabled by ${COMMIT_AUTHOR}, for enabling put this file ${CD_ENABLED_FILE_NAME}"
               }
