@@ -10,8 +10,8 @@ pipeline {
 			}
 			steps {
 				script {
-					sh 'printenv'
-					error "This pipeline was locked ${CHANGE_AUTHOR}"
+					GIT_AUTHOR=$(git --no-pager show -s --format='%an' $GIT_COMMIT) 
+					error "This pipeline was locked ${GIT_AUTHOR}"
 				}
 			}
 		}
