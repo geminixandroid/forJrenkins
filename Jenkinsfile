@@ -3,13 +3,15 @@ pipeline {
 
 	stages {
 		stage('Checking if pipeline is enabled') {
-			script {
-				FILE_NAME="cd.enabled"
-				if (fileExists(FILE_NAME)){
-					echo "Pipeline is enabled"
-				} else {
-					COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
-					error "Pipeline was blocked by ${COMMIT_AUTHOR}, for enbaling put this file ${FILE_NAME}"
+			steps {
+				script {
+					FILE_NAME="cd.enabled"
+					if (fileExists(FILE_NAME)){
+						echo "Pipeline is enabled"
+					} else {
+						COMMIT_AUTHOR=sh(script: 'git log -1 --pretty=format:\'%an\'', returnStdout: true).trim()
+						error "Pipeline was blocked by ${COMMIT_AUTHOR}, for enbaling put this file ${FILE_NAME}"
+					}
 				}
 			}
 		}
